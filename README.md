@@ -5,8 +5,7 @@
 [![License]](https://github.com/zenbrent/vinyl-phantomic/blob/master/LICENSE)
 
 - Pipes vinyl streams to [PhantomJS](http://phantomjs.org)
-- Accept `.js`, `.html`, and `.css` files. (forthcoming!)
-- Accept other files with custom file handlers. (forthcoming!)
+- Accept `.js` and `.html` files. `css` and custom file handlers forthcoming.
 - Writes script console output to stdout
 - Writes script errors to stderr
 - Exit code 0 if nothing threw, otherwise 1
@@ -19,8 +18,7 @@ npm install -g vinyl-phantomic
 
 ## Usage
 
-Phantomic does not include PhantomJS itself. Make sure the `phantomjs`
-executable is in your `PATH` or specify with `--phantomjs`. On windows I had
+Vinyl-Phantomic includes PhantomJS as a dependency. On windows I still had
 to include a copy of phantomjs.exe in the directory I was running the node
 script from.
 
@@ -44,23 +42,24 @@ var gulp = require('gulp');
 var streamqueue = require('streamqueue');
 
 // Take streams of html, css, and JS files:
-streamqueue(
-  gulp.src('tests/*.js'),
-  gulp.src('tests/*.css'),
-  gulp.src('tests/*.html')
-).pipe(
+gulp.src([
+  'tests/*.js',
+  'tests/*.html'
+])
 
 // pipe them to vinyl-phantomic
-  vphantomic({
-    debug : false,
-    port  : 0,
-    brout : false,
-    onComplete: function (code) {
-      process.exit(code);
-    }
+.pipe(vphantomic({
+  debug : false,
+  port  : 8080,
+  brout : false
+}, function (code) {
+  // callback when complete
+  // FIXME: this should probably just be the stream end, not a seperate callback.
+  process.exit(code);
+})
 
 // and watch the errors fly!
-).pipe(process.stdout);
+.pipe(process.stdout);
 ```
 
 ## Run the test cases
