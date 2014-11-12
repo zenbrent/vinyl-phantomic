@@ -79,4 +79,5 @@ $ gulp test
 MIT
 
 [SemVer]: http://img.shields.io/:semver-%E2%9C%93-brightgreen.svg
+[License]: http://img.shields.io/npm/l/vinyl-phantomic.svg
 [brout]: https://github.com/mantoni/brout.js
