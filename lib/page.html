@@ -7,6 +7,7 @@
     <script src="/js/es5-shim"></script>
     <script>
       (function () {
+        'use strict';
 
         var flags = location.search.substring(1).split('&');
 
@@ -15,15 +16,17 @@
             return console.log('[EXIT 1]');
           }
           var brout = process._brout;
-          var log = console.log.original;
-          brout.on('out', function (msg) {
-            log.call(console, '[OUT]' + msg);
-          });
-          brout.on('err', function (msg) {
-            log.call(console, '[ERR]' + msg);
-          });
-          brout.on('exit', function (code) {
-            log.call(console, '[EXIT ' + (code || 0) + ']');
+          var log = console.log.original.bind(console);
+          brout.on({
+            'out': function (msg) {
+              log('[OUT]' + msg);
+            },
+            'err': function (msg) {
+              log('[ERR]' + msg);
+            },
+            'exit': function (code) {
+              log('[EXIT ' + (code || 0) + ']');
+            }
           });
         };
 

@@ -9,16 +9,11 @@ _ = require 'lodash'
 
 gulpBuffer = require 'gulp-buffer'
 map = require 'map-stream'
-path = require 'path'
-source = require 'vinyl-source-stream'
 vfs = require 'vinyl-fs'
-vmap = require 'vinyl-map'
-gulpStream = require 'gulp-stream'
 
 bufferStream = require './fixtures/bufferStream'
 
 vphantom = require '../lib/vinylPhantomic'
-
 
 describe 'piping scripts to phantomic', ->
   it.skip 'should work with errors', ->
