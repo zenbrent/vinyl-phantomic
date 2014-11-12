@@ -8,7 +8,7 @@
     "Maximilian Antoni <mail@maxantoni.de> (http://maxantoni.de)"
   ],
   "homepage": "https://github.com/zenbrent/vinyl-phantomic",
-  "main": "./lib/phantomic.js",
+  "main": "./lib/vinylPhantomic.js",
   "bin": "bin/cmd.js",
   "engines": {
     "node": ">=0.10"

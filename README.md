@@ -10,6 +10,16 @@
 - Writes script errors to stderr
 - Exit code 0 if nothing threw, otherwise 1
 
+## Probably not working right now
+
+- The command-line API
+
+## Todo
+
+- Pipe `css` files.
+- Custom file type handlers.
+- Continuous file loading - right now, vinyl-phantomic doesn't load anything until the input stream closes.
+
 ## Install
 
 ```
