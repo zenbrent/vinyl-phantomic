@@ -4,8 +4,6 @@
 [![SemVer]](http://semver.org)
 [![License]](https://github.com/zenbrent/vinyl-phantomic/blob/master/LICENSE)
 
-
-
 - Pipes vinyl streams to [PhantomJS](http://phantomjs.org)
 - Accept `.js`, `.html`, and `.css` files. (forthcoming!)
 - Accept other files with custom file handlers. (forthcoming!)

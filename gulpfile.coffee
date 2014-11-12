@@ -6,13 +6,12 @@ awatch = require 'gulp-autowatch'
 gbuffer = require 'gulp-buffer'
 gulp = require 'gulp'
 map = require 'vinyl-map'
-phantomic = require './lib/phantomic'
+phantomic = require './lib/vinylPhantomic'
 source = require 'vinyl-source-stream'
 source = require 'vinyl-source-stream'
 streamqueue = require 'streamqueue'
 vbuffer = require 'vinyl-buffer'
 mocha = require 'gulp-mocha'
-
 
 # paths
 awatchPaths =

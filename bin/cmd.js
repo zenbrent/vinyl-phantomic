@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 
-var phantomic = require('../lib/phantomic.js');
+var vphantomic = require('../lib/vinylPhantomic.js');
 
 var args = process.argv.slice(2);
 var arg;
@@ -31,6 +31,6 @@ if (args.length) {
   input = require('fs').createReadStream(args[0]);
 }
 
-phantomic(input, opts, function (code) {
+vphantomic(input, opts, function (code) {
   process.exit(code);
 }).pipe(process.stdout);
