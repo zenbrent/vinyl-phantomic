@@ -2,12 +2,57 @@ _ = require 'lodash'
 
 { expect } = require 'chai'
 
-vfs = require 'vinyl-fs'
+gulpBuffer = require 'gulp-buffer'
 map = require 'map-stream'
-vmap = require 'vinyl-map'
-path = require 'path'
+vfs = require 'vinyl-fs'
 
-describe.skip 'piping html to phantomic', ->
-  it 'should take one html file', ->
-  it 'should take many html files', ->
+bufferStream = require './fixtures/bufferStream'
+
+vphantom = require '../lib/vinylPhantomic'
+
+describe 'piping html to phantomic', ->
+  it 'should take one html file', (done) ->
+    intercept = bufferStream()
+
+    vfs.src [
+      'tests/html/someDivs.html'
+      'tests/html/checkForElements.js'
+    ]
+    .pipe gulpBuffer()
+    .pipe vphantom()
+    .pipe map intercept
+    .on 'error', (err) -> done err
+    .on 'end', ->
+      console.log 'data: <', intercept.toString(), '>'
+      expect(intercept.toString()).to.equal [
+        'something'
+        'id by div'
+        ''
+      ].join '\n'
+      done null
+
+  it 'should take many html files', (done) ->
+
+    intercept = bufferStream()
+
+    vfs.src [
+      'tests/html/someDivs.html'
+      'tests/html/someScripts.html'
+      'tests/html/checkForElements.js'
+    ]
+    .pipe gulpBuffer()
+    .pipe vphantom()
+    .pipe map intercept
+    .on 'error', (err) -> done err
+    .on 'end', ->
+      console.log 'data: <', intercept.toString(), '>'
+      expect(intercept.toString()).to.equal [
+        'logging in html!'
+        'something'
+        'div by id'
+        'template'
+        ''
+      ].join '\n'
+      done null
+
 
