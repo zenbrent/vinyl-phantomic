@@ -1,28 +1,43 @@
 {
-  "name": "phantomic",
-  "version": "1.0.1",
+  "name": "vinyl-phantomic",
+  "version": "0.0.1",
   "description": "Pipe stdin to Phantom.JS and console messages to stdout",
-  "author": "Maximilian Antoni <mail@maxantoni.de> (http://maxantoni.de)",
+  "author": "Brent Brimhall <brent.brimhall@gmail.com>",
   "contributors": [
-    "Andrey Popp <8mayday@gmail.com>"
+    "Andrey Popp <8mayday@gmail.com>",
+    "Maximilian Antoni <mail@maxantoni.de> (http://maxantoni.de)"
   ],
-  "homepage": "https://github.com/mantoni/phantomic",
+  "homepage": "https://github.com/zenbrent/vinyl-phantomic",
   "main": "./lib/phantomic.js",
   "bin": "bin/cmd.js",
   "engines": {
     "node": ">=0.10"
   },
   "dependencies": {
-    "through": "^2.3",
+    "chai": "^1.10.0",
+    "es5-shim": "^4.0",
+    "gulp": "^3.8.10",
+    "gulp-buffer": "0.0.2",
+    "gulp-mocha": "^1.1.1",
     "source-mapper": "^1.0",
-    "es5-shim": "^4.0"
+    "streamqueue": "^0.1.1",
+    "through": "^2.3",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-map": "^1.0.1",
+    "vinyl-source-stream": "^1.0.0"
   },
   "devDependencies": {
-    "browserify": "^3.21"
+    "browserify": "^3.21",
+    "coffee-script": "^1.8.0",
+    "gulp-autowatch": "0.0.1",
+    "mocha": "^2.0.1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mantoni/phantomic.js.git"
+    "url": "https://github.com/zenbrent/vinyl-phantomic.js.git"
+  },
+  "scripts": {
+    "test": "gulp test"
   },
   "license": "MIT"
 }

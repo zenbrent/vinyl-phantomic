@@ -1,9 +1,14 @@
-# Phantomic
+# Vinyl Phantomic
+## Forked from [mantoni's wonderful phantomic module](https://github.com/mantoni/phantomic).
 
 [![SemVer]](http://semver.org)
-[![License]](https://github.com/mantoni/phantomic/blob/master/LICENSE)
+[![License]](https://github.com/zenbrent/vinyl-phantomic/blob/master/LICENSE)
 
-- Pipes stdin to [PhantomJS](http://phantomjs.org)
+
+
+- Pipes vinyl streams to [PhantomJS](http://phantomjs.org)
+- Accept `.js`, `.html`, and `.css` files. (forthcoming!)
+- Accept other files with custom file handlers. (forthcoming!)
 - Writes script console output to stdout
 - Writes script errors to stderr
 - Exit code 0 if nothing threw, otherwise 1
@@ -11,57 +16,15 @@
 ## Install
 
 ```
-npm install -g phantomic
+npm install -g vinyl-phantomic
 ```
 
 ## Usage
 
 Phantomic does not include PhantomJS itself. Make sure the `phantomjs`
-executable is in your `PATH` or specify with `--phantomjs`.
-
-```
-Usage: phantomic [options] [file]
-
-Options:
-    --debug             Launch the WebKit debugger in a browser
-    --port <num>        Explicit port binding for temporary web server. If no
-                        port is specified, a random free port is used.
-    --phantomjs <path>  Use specified phantomjs binary
-    --brout             Assume brout is part of the JS
-```
-
-Pipe any script to phantomic:
-
-```
-phantomic < ./test.js
-```
-
-Opening a file:
-
-```
-phantomic ./test.js
-```
-
-If you are using phantomic from a Makefile with a local install, you will have
-to include it in the PATH:
-
-```
-BIN = ./node_modules/.bin
-PATH := $(BIN):$(PATH)
-
-test:
-  browserify ./test.js | phantomic
-```
-
-## Debugging
-
-Put a `debugger;` statement somewhere and run:
-
-```
-phantomic --debug < ./test.js
-```
-
-This will open the WebKit inspector in your browser.
+executable is in your `PATH` or specify with `--phantomjs`. On windows I had
+to include a copy of phantomjs.exe in the directory I was running the node
+script from.
 
 ## Exit detection
 
@@ -78,22 +41,35 @@ of the given script, run phantomic with `--brout` to install handlers for the
 You can use phantomic from your own node scripts like this:
 
 ```js
-var phantomic = require('phantomic');
+var vphantomic = require('vinyl-phantomic');
+var gulp = require('gulp');
+var streamqueue = require('streamqueue');
 
-phantomic(process.stdin, {
-  debug : false,
-  port  : 0,
-  brout : false
-}, function (code) {
-  process.exit(code);
-}).pipe(process.stdout);
+// Take streams of html, css, and JS files:
+streamqueue(
+  gulp.src('tests/*.js'),
+  gulp.src('tests/*.css'),
+  gulp.src('tests/*.html')
+).pipe(
+
+// pipe them to vinyl-phantomic
+  vphantomic({
+    debug : false,
+    port  : 0,
+    brout : false,
+    onComplete: function (code) {
+      process.exit(code);
+    }
+
+// and watch the errors fly!
+).pipe(process.stdout);
 ```
 
 ## Run the test cases
 
-```
-npm install
-make
+```sh
+$ npm install
+$ gulp test
 ```
 
 ## Compatibility
@@ -106,5 +82,4 @@ make
 MIT
 
 [SemVer]: http://img.shields.io/:semver-%E2%9C%93-brightgreen.svg
-[License]: http://img.shields.io/npm/l/phantomic.svg
 [brout]: https://github.com/mantoni/brout.js
