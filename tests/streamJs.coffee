@@ -42,15 +42,11 @@ describe 'piping scripts to phantomic', ->
       # expect(intercept.data).to.have.length 7
       expect intercept.toString()
       .to.equal [
-        'hello phantom.js\n'
-        'Whoups!\n'
-        '1\n2\n3\n'
-        'Oh, hi!\n'
-        '1\n'
-        '2\n'
-        '3\n'
-        '4\n'
-        '5\n'
-      ].join ''
+        'hello phantom.js'
+        'Whoups!'
+        '1', '2', '3'
+        'Oh, hi!'
+        '1', '2', '3', '4', '5', ''
+      ].join '\n'
       done null
 
