@@ -1,6 +1,6 @@
 {
   "name": "vinyl-phantomic",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Pipe stdin to Phantom.JS and console messages to stdout",
   "author": "Brent Brimhall <brent.brimhall@gmail.com>",
   "contributors": [
