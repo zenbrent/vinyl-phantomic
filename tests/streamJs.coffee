@@ -20,7 +20,9 @@ bufferStream = require './fixtures/bufferStream'
 vphantom = require '../lib/vinylPhantomic'
 
 
-describe.only 'piping scripts to phantomic', ->
+describe 'piping scripts to phantomic', ->
+  it.skip 'should work with errors', ->
+
   it 'should take one script', (done) ->
     intercept = bufferStream() # (file) -> file.contents
 
