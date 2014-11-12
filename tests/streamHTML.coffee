@@ -26,7 +26,7 @@ describe 'piping html to phantomic', ->
       console.log 'data: <', intercept.toString(), '>'
       expect(intercept.toString()).to.equal [
         'something'
-        'id by div'
+        'div by id'
         ''
       ].join '\n'
       done null
