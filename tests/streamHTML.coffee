@@ -23,7 +23,6 @@ describe 'piping html to phantomic', ->
     .pipe map intercept
     .on 'error', (err) -> done err
     .on 'end', ->
-      console.log 'data: <', intercept.toString(), '>'
       expect(intercept.toString()).to.equal [
         'something'
         'div by id'
@@ -45,7 +44,6 @@ describe 'piping html to phantomic', ->
     .pipe map intercept
     .on 'error', (err) -> done err
     .on 'end', ->
-      console.log 'data: <', intercept.toString(), '>'
       expect(intercept.toString()).to.equal [
         'logging in html!'
         'something'

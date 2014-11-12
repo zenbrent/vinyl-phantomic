@@ -16,6 +16,7 @@
 
 ## Todo
 
+- Bring back sourcemap support!
 - Faster loading by forking phantomjs for every new stream, only create a new instance if it crashes.
 - Custom file type handlers:
   - Possible actions will include concat in page, execute script, serve a file, and control Phantom directly.
@@ -32,7 +33,8 @@
   - Gulp tests
   - Browserify
   - Different testing frameworks
-- Fix and test the command line API. I don't use it so I have been neglecting it... shame on me. ;_;
+- Fix and test the command line API. I don't use it so I have been neglecting it... shame on me. ;\_;
+- Make vinyl-phantomic be more gulp-plugin-y: https://github.com/gulpjs/gulp/blob/master/docs/writing-a-plugin/README.md
 
 Pull requests welcome!
 
