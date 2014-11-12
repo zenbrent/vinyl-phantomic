@@ -16,14 +16,30 @@
 
 ## Todo
 
-- Pipe `css` files.
-- Custom file type handlers.
+- Faster loading by forking phantomjs for every new stream, only create a new instance if it crashes.
+- Custom file type handlers:
+  - Possible actions will include concat in page, execute script, serve a file, and control Phantom directly.
+  - Use predicate functions/streams (not just file extensions) to decide which action to take on a file.
 - Continuous file loading - right now, vinyl-phantomic doesn't load anything until the input stream closes.
+  - Possibly serve each vinyl file individually and load it into the page.
+  - Insert html code into the document, serve script and css files with `<script>` and `<css>` tags.
+- Run tests on other browsers, not just Phantom.
+  - Actual browsers, including Chrome, Safari, and IE.
+  - Zombie.js
+  - Casper.js (navigation and scripting for phantomjs.) This will be very useful when you can stream commands to Phantom.
+- Update some of the code and modules so it's more concise and up-to-date.
+- Write some tests showing different uses of vinyl-phantomic, e.g.
+  - Gulp tests
+  - Browserify
+  - Different testing frameworks
+- Fix and test the command line API. I don't use it so I have been neglecting it... shame on me. ;_;
+
+Pull requests welcome!
 
 ## Install
 
 ```
-npm install -g vinyl-phantomic
+npm install vinyl-phantomic
 ```
 
 ## Usage
@@ -47,9 +63,8 @@ of the given script, run phantomic with `--brout` to install handlers for the
 You can use phantomic from your own node scripts like this:
 
 ```js
-var vphantomic = require('vinyl-phantomic');
+var phantom = require('vinyl-phantomic');
 var gulp = require('gulp');
-var streamqueue = require('streamqueue');
 
 // Take streams of html, css, and JS files:
 gulp.src([
@@ -58,7 +73,7 @@ gulp.src([
 ])
 
 // pipe them to vinyl-phantomic
-.pipe(vphantomic({
+.pipe(phantom({
   debug : false,
   port  : 8080,
   brout : false
