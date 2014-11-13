@@ -10,6 +10,7 @@ module.exports = (filename, options = {}) ->
     extensions: ['.coffee']
     ignoreMissing: false
     fullPaths: true
+    basedir: __dirname
   , options
 
   bundler = browserify filename, opts
