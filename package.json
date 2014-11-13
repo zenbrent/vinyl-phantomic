@@ -1,6 +1,6 @@
 {
   "name": "vinyl-phantomic",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Pipe stdin to Phantom.JS and console messages to stdout",
   "author": "Brent Brimhall <brent.brimhall@gmail.com>",
   "contributors": [
@@ -14,7 +14,6 @@
     "node": ">=0.10"
   },
   "dependencies": {
-    "brout": "^1.0.0",
     "coffeeify": "^0.7.0",
     "es5-shim": "^4.0",
     "event-stream": "^3.1.7",
@@ -45,6 +44,7 @@
     "mocha": "^2.0.1",
     "sinon": "^1.11.1",
     "sinon-chai": "^2.6.0",
+    "brout": "^1.0.0",
     "vinyl-fs": "^0.3.11"
   },
   "repository": {
