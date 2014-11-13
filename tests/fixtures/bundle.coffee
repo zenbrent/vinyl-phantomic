@@ -16,3 +16,4 @@ module.exports = (filename, options = {}) ->
   bundler = browserify filename, opts
   .transform coffeeify
   .bundle()
+
