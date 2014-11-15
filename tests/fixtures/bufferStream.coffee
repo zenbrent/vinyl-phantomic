@@ -16,7 +16,4 @@ module.exports = (handler) ->
 
   dataFn.data = []
 
-  dataFn.toString = (sep = '') ->
-    return dataFn.data.join sep
-
   return dataFn

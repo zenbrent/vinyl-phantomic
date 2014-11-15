@@ -1,4 +1,6 @@
 (function() {
+  console.log("HTML elements:");
+
   if (document.getElementsByClassName('something').length === 1)
     console.log('something');
 

@@ -7,6 +7,6 @@ map = require 'map-stream'
 vmap = require 'vinyl-map'
 path = require 'path'
 
-describe.skip 'piping css to phantomic', ->
+describe.skip 'piping css to phantomjs', ->
   it 'should take one css file', ->
   it 'should take many css files', ->

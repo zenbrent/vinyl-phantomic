@@ -14,7 +14,7 @@ bufferStream = require './fixtures/bufferStream'
 
 vphantom = require '../lib/vinylPhantomic'
 
-describe.skip 'piping scripts to phantomic', ->
+describe.skip 'piping scripts to phantomjs', ->
 
   it 'should take one test', (done) ->
     intercept = bufferStream() # (file) -> file.contents
@@ -25,7 +25,7 @@ describe.skip 'piping scripts to phantomic', ->
     .pipe map intercept
     .on 'error', (err) -> done err
     .on 'end', ->
-      expect(intercept.toString()).to.equal 'Oh, hi!\n'
+      expect(intercept.data.join '').to.equal 'Oh, hi!\n'
       done null
 
   it 'should take many tests', (done) ->
