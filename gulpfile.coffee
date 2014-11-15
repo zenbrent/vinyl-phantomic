@@ -35,7 +35,9 @@ gulp.task 'coffee', ->
 
 gulp.task 'test', ->
   gulp.src 'tests/*.coffee', { read: false }
-  .pipe mocha { reporter: 'spec' }
+  .pipe mocha
+    reporter: 'spec'
+    # timeout: 2000 # This may need to be increased on slower computers. Phantom seems a little slow.
 
 gulp.task 'watch', ->
   awatch gulp, awatchPaths
