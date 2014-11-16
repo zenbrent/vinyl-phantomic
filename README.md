@@ -1,4 +1,5 @@
 # Vinyl Phantomic
+
 ## Forked from [mantoni's wonderful phantomic module](https://github.com/mantoni/phantomic).
 
 [![SemVer]](http://semver.org)
@@ -18,13 +19,14 @@
 
 - Bring back sourcemap support!
 - Better client configuration options.
-- Faster loading by forking phantomjs for every new stream, only create a new instance if it crashes.
+- Faster loading by caching phantomjs instances and refreshing the page, only create a new instance if it crashes.
 - Custom file type handlers:
   - Possible actions will include concat in page, execute script, serve a file, and control Phantom directly.
   - Use predicate functions/streams (not just file extensions) to decide which action to take on a file.
 - Continuous file loading - right now, vinyl-phantomic doesn't load anything until the input stream closes.
   - Possibly serve each vinyl file individually and load it into the page.
   - Insert html code into the document, serve script and css files with `<script>` and `<css>` tags.
+  - Loading shiz via websockets?
 - Run tests on other browsers, not just Phantom.
   - Actual browsers, including Chrome, Safari, and IE.
   - Zombie.js
