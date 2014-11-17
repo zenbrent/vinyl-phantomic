@@ -65,5 +65,22 @@ describe 'piping scripts to phantomjs', ->
         '1', '2', '3', '4', '5'
       ]
       done null
+  
+  describe 'error handling', ->
+    it 'should use source maps for errors', (done) ->
+      testFiles.glob 'tests/js/error.js', (err, data) ->
+        expect(err).to.not.exist
 
-  it.skip 'should handle errors in the streams!', ->
+        # Get rid of extra newlines and spaces, and convert it to an array.
+        dataValue = _.flatten _.map data, (d) -> d.toString().trim().split /\n\s*/
+        console.log dataValue
+
+        expect(dataValue[0]).to.equal "Error: Ouch!"
+        expect(_.rest dataValue).to.deep.equal [
+          'at /source/error.js:2'
+          'at /source/error.js:5'
+          'at /source/error.js:8'
+          'at /source/error.js:10'
+        ]
+
+        done null
